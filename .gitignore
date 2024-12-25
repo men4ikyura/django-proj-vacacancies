@@ -1,3 +1,5 @@
 *.csv
 6_3.py
 venv
+.env
+data.bd
