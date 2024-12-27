@@ -3,3 +3,10 @@
 venv
 .env
 data.bd
+scriptsData/scripts/create_table_CY.py
+scriptsData/scripts/__pycache__
+test.py
+test.txt
+!scriptsData/filtredStatistics/filtredAvgSalCities.csv
+!scriptsData/generalStatistics/avg_salary_cities.csv
+.DS_Store

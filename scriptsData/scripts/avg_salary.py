@@ -2,7 +2,6 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 import sqlite3
-import numpy as np
 
 
 # Name: average, Length: 3506009, dtype: float32
@@ -37,17 +36,11 @@ def get_salary_rubles(row, connection):
         return None
 
 
-def prepare_data(path_main_csv, con):
-
-    # read data from csv
-    df = pd.read_csv(path_main_csv, low_memory=False, usecols=[
-        "area_name", "salary_from", "salary_to", "salary_currency", "published_at"])
+def prepare_data(df, con):
 
     # подсчет средней зп
     df["average"] = df[["salary_from", "salary_to"]].mean(
         axis=1)
-
-    # не учитываем в подсчете те строки у которых зп 0
 
     # перевод зп в рубли
     df['average'] = df.apply(
@@ -73,36 +66,41 @@ def avg_salary_years(df):
 
 
 def avg_salary_cities(df):
+    length_df = len(df)
     return (df
             .groupby('area_name')
             .agg(count=('area_name', 'count'),
                  average=('average', 'mean'))
-            .assign(perc=lambda df: df['count'] / 6915297 * 100)
+            .assign(perc=lambda row: row['count'] / length_df * 100)
             .query('perc > 1')
             .sort_values(['average', 'area_name'], ascending=[False, True])
             .reset_index())
 
 
+def get_statistics_avg_sal(df):
+
+    with sqlite3.connect("./data.bd") as con:
+        data = prepare_data(df, con)
+
+    avg_salary_of_years = avg_salary_years(data)
+    avg_salary_of_cities = avg_salary_cities(data)
+
+    return avg_salary_of_years, avg_salary_of_cities
+
+
+def read_file(path_main_csv):
+    return pd.read_csv(path_main_csv, low_memory=False, usecols=[
+        "area_name", "salary_from", "salary_to", "salary_currency", "published_at"])
+
+
 if __name__ == "__main__":
     load_dotenv()
     path_main_csv = os.getenv("DATA_VACANCIES")
-    save_file_name_cities = "scriptsData/generalFormat/avg_salary_cities.csv"
-    save_file_name_years = "scriptsData/generalFormat/avg_salary_years.csv"
-
-    with sqlite3.connect("./data.bd") as con:
-        data = prepare_data(path_main_csv, con)
-
-    avg_salary_of_years = avg_salary_years(data)
+    save_file_name_cities = os.path.join(
+        os.getenv("SAVING_PATH_GENERAL_ANALYTIC"), "avg_salary_cities.csv")
+    save_file_name_years = os.path.join(
+        os.getenv("SAVING_PATH_GENERAL_ANALYTIC"), "avg_salary_years.csv")
+    df = read_file(path_main_csv)
+    avg_salary_of_years, avg_salary_of_cities = get_statistics_avg_sal(df)
     save_in_file(avg_salary_of_years, save_file_name_years)
-    avg_salary_of_cities = avg_salary_cities(data)
     save_in_file(avg_salary_of_cities, save_file_name_cities)
-
-# df = pd.DataFrame([[1, 1, 2, 3],
-#                    [1, 4, 5, 6],
-#                    [1, 7, 8, 9],
-#                    [1, np.nan, np.nan, np.nan]],
-#                   columns=['AA', 'A', 'B', 'C'])
-# print(df)
-# print(df.iloc[3, 3])
-# if pd.notnull(df.iloc[3, 3]):
-#     print("fa")
