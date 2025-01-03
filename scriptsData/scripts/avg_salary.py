@@ -62,7 +62,13 @@ def avg_salary_years(df):
             .agg(average=('average', 'mean'),
                  count=('average', 'count'),
                  sum=('average', 'sum'))
+            .round()
+            .astype(int)
             .reset_index())
+
+    # данные до округления
+    # 2003,41304.95041859813,1070,44196296.9479
+    # 2004,42716.8816207128,4321,184579645.4831
 
 
 def avg_salary_cities(df):
@@ -73,8 +79,14 @@ def avg_salary_cities(df):
                  average=('average', 'mean'))
             .assign(perc=lambda row: row['count'] / length_df * 100)
             .query('perc > 1')
+            .round()
+            .astype(int)
             .sort_values(['average', 'area_name'], ascending=[False, True])
             .reset_index())
+
+    # данные до округления
+    # Москва,2339355,97795.50773239639,33.82869889753108
+    # Санкт-Петербург,699079,82045.37058491878,10.109168123943196
 
 
 def get_statistics_avg_sal(df):
