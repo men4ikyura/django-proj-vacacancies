@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ImgsAnalytics
+from .models import ImgsAnalytics, ParcedData
 
 
 def index(request):
@@ -25,4 +25,13 @@ def skills(request):
 
 
 def last_vacancies(request):
-    return render(request, 'index/last_vacancies.html')
+    # path_file = os.path.join(settings.BASE_DIR, 'static',
+    #                          'index/full_info_proffesion.json')
+
+    # with open(path_file) as file:
+    #     data = json.load(file)
+    # main()
+    # return render(request, 'index/last_vacancies.html', {'data': data["vacancies"]})
+    # update_parsed_data()
+    data = ParcedData.objects.all()
+    return render(request, 'index/last_vacancies.html', {"data": data})

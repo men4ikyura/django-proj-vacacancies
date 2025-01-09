@@ -1,2 +1,12 @@
 <p>Вакансии последнии</p>
+{% for device in data %}
+<p>Название профессии {{ device.name }}</p>
+<p>Описание {{ device.description }}</p>
+<p>Навыки {{ device.key_skills }}</p>
+<p>Название комании {{ device.employer_name }}</p>
+<p>Оклад {{ device.salary }} {{device.currency}}</p>
+<p>Название региона {{ device.area_city }}</p>
+<p>Дата публикации {{ device.published_at }}</p>
+<br>
+{% endfor %}
 <a href="/">Назад</a>
