@@ -1,0 +1,63 @@
+.description_profession {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.image_profession {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+
+header {
+    background: #000000;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1000px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+section h2 {
+    color: #000000;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+section ul {
+    margin-left: 20px;
+}
+
+section ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#skills {
+    margin-bottom: 50px;
+}
+
+#h2_index {
+    text-align: center;
+    margin-bottom: 30px;
+}

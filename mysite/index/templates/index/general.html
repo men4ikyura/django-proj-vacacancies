@@ -1,5 +1,30 @@
-<p>Общая стата</p>
-{% for b in data %}
-<img width="700" height="500" src="{{b.cover.url}}">
+{% extends "menu_info_base.html" %}
+
+{% block title %}Общая статистика{% endblock %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'index/css/table_style.css'%}" type="text/css">
+<link rel="stylesheet" href="{% static 'index/css/menu_info.css'%}" type="text/css">
+
+<h2>Общая статистика профессий за 2003-2024 года.</h2>
+<p class="description_page">На данной странице представлена следующия информация:</p>
+{% for item in data.not_skills %}
+<p class="menu_title">{{item.title}}</p>
+<div class="hidden_info">
+    <img class="graphic" width="700" height="500" src="{{item.image.url}}">
+    <div class="table-container">
+        <p>{{item.text|safe}}</p>
+    </div>
+</div>
 {% endfor %}
-<a href="/">Назад</a>
+
+{% for skill in data.skills %}
+<p class="menu_title">{{skill.title}}</p>
+<div class="hidden_info">
+    <img class="graphic" width="700" height="500" src="{{skill.image.url}}">
+    <div class="table-container">
+        <p>{{skill.text|safe}}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

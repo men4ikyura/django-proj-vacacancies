@@ -2,8 +2,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 from collections import Counter
-
-# везде где указаны скиллы - указана и дата
+import json
 
 
 def get_trend_skills(df):
@@ -12,17 +11,18 @@ def get_trend_skills(df):
               .assign(published_at=lambda x: pd.to_datetime(x["published_at"], errors="coerce", utc=True).dt.year)
               .groupby("published_at"))
 
-    df = pd.DataFrame()
+    years_skills_dict = {}
     for year, group in groups:
         skills = Counter(skill for skills in group["key_skills"].str.split(
             '\n') for skill in skills).most_common(20)
-        df[year] = [skill[0] for skill in skills]
+        years_skills_dict[year] = skills
 
-    return df
+    return years_skills_dict
 
 
-def save_in_file(df, name):
-    df.to_csv(name, index=False)
+def save_in_file(dict, name):
+    with open(name, 'w') as file:
+        json.dump(dict, file, ensure_ascii=False, indent=4)
 
 
 def read_file(name_main_csv):
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     load_dotenv()
     name_main_csv = os.getenv("DATA_VACANCIES")
     save_file_name = os.path.join(
-        os.getenv("SAVING_PATH_GENERAL_ANALYTIC"), "trend_skills.csv")
-    df = read_file(name_main_csv)
-    df = get_trend_skills(df)
-    save_in_file(df, save_file_name)
+        os.getenv("SAVING_PATH_GENERAL_ANALYTIC"), "trend_skills.json")
+    dict = read_file(name_main_csv)
+    dict = get_trend_skills(dict)
+    save_in_file(dict, save_file_name)

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block scripts %}
+<script>document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('p');
+        titles.forEach((title) => {
+            title.addEventListener('click', () => {
+                const hiddenInfo = title.nextElementSibling;
+                if (hiddenInfo && hiddenInfo.classList.contains('hidden_info')) {
+                    hiddenInfo.classList.toggle('active');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

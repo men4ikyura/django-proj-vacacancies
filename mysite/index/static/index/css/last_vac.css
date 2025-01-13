@@ -1,0 +1,63 @@
+.device {
+    margin-bottom: 30px;
+    /* Отступы между блоками */
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.device-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 19px;
+    color: #383838;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.device-description,
+.device-skills,
+.device-employer,
+.device-salary,
+.device-area,
+.device-published {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.device-description strong,
+.device-skills strong,
+.device-employer strong,
+.device-salary strong,
+.device-area strong,
+.device-published strong {
+    color: #393939;
+}
+
+.device-salary {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+.device-description .toggle-description {
+    margin-left: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 3px 7px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.device-description .toggle-description:hover {
+    background-color: #0056b3;
+}

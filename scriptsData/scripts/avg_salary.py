@@ -4,11 +4,6 @@ import os
 import sqlite3
 
 
-# Name: average, Length: 3506009, dtype: float32
-# просто с указанием валюты и без зп таких нет
-# заменить тип salary_currency на categories
-
-
 def get_koef(date, currency, con):
     if currency == "RUR":
         return 1
@@ -59,16 +54,11 @@ def save_in_file(data, save_file_name):
 def avg_salary_years(df):
     return (df
             .groupby("published_at")
-            .agg(average=('average', 'mean'),
-                 count=('average', 'count'),
-                 sum=('average', 'sum'))
+            .agg(average=('average', 'mean'))
             .round()
             .astype(int)
+            .sort_values(['published_at'], ascending=[False])
             .reset_index())
-
-    # данные до округления
-    # 2003,41304.95041859813,1070,44196296.9479
-    # 2004,42716.8816207128,4321,184579645.4831
 
 
 def avg_salary_cities(df):
@@ -82,11 +72,8 @@ def avg_salary_cities(df):
             .round()
             .astype(int)
             .sort_values(['average', 'area_name'], ascending=[False, True])
+            .drop(columns=["count", "perc"])
             .reset_index())
-
-    # данные до округления
-    # Москва,2339355,97795.50773239639,33.82869889753108
-    # Санкт-Петербург,699079,82045.37058491878,10.109168123943196
 
 
 def get_statistics_avg_sal(df):

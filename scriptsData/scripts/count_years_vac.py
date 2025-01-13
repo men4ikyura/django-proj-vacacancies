@@ -9,6 +9,7 @@ def get_count_vacancies_years(df):
             .assign(published_at=lambda x: pd.to_datetime(x["published_at"], errors="coerce", utc=True).dt.year)
             .groupby("published_at")
             .agg(size=("published_at", "size"))
+            .sort_values(['published_at'], ascending=[False])
             .reset_index())
 
 

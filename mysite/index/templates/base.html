@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@401&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index/css/page.css'%}" type="text/css">
+</head>
+
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+
+            <ul class="sidebar_list">
+                <li class="item_sidebar_list" id="navigation-title">Навигация</li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../">Главная страница</a></li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../general/">Общая статистика</a>
+                </li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../demand/">Востребованность</a></li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../geo/">География</a></li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../skills/">Популярные навыки</a>
+                </li>
+                <li class="item_sidebar_list"><a class="a_item_sidebar_list" href="../last-vacancies/">Последние
+                        вакансии</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <header class="header">
+                <h1>Анализируем</h1>
+            </header>
+            <main class="main">
+                {% block content %}{% endblock %}
+            </main>
+            <footer class="footer">
+                <p>Выполнил Жилин Юрий Дмитриевич РИ-230947</p>
+            </footer>
+        </div>
+    </div>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

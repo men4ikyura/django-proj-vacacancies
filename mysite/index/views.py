@@ -1,37 +1,31 @@
 from django.shortcuts import render
-from .models import ImgsAnalytics, ParcedData
+from .models import GeneralSkillsAnalytics, FiltredSkillsAnalytics, GeneralAnalytics, FiltredAnalytics
 
 
 def index(request):
-    return render(request, 'index/index.html')
+    return render(request, "index/index.html")
 
 
 def general(request):
-    data = ImgsAnalytics.objects.filter(title="Общая статистика")
-    return render(request, 'index/general.html', {'data': data})
+    not_skills = GeneralAnalytics.objects.all()
+    skills = GeneralSkillsAnalytics.objects.all()
+    return render(request, "index/general.html", {"data": {"not_skills": not_skills, "skills": skills}})
 
 
 def demand(request):
-    data = ImgsAnalytics.objects.filter(title="Фильтрованная статистика")
-    return render(request, 'index/demand.html', {'data': data})
+    data = FiltredAnalytics.objects.filter(id_page="DMN")
+    return render(request, "index/demand.html", {"data": data})
 
 
 def geo(request):
-    return render(request, 'index/geo.html')
+    data = FiltredAnalytics.objects.filter(id_page="GEO")
+    return render(request, "index/geo.html", {"data": data})
 
 
 def skills(request):
-    return render(request, 'index/skills.html')
+    data = FiltredSkillsAnalytics.objects.all()
+    return render(request, "index/skills.html", {"data": data})
 
 
 def last_vacancies(request):
-    # path_file = os.path.join(settings.BASE_DIR, 'static',
-    #                          'index/full_info_proffesion.json')
-
-    # with open(path_file) as file:
-    #     data = json.load(file)
-    # main()
-    # return render(request, 'index/last_vacancies.html', {'data': data["vacancies"]})
-    # update_parsed_data()
-    data = ParcedData.objects.all()
-    return render(request, 'index/last_vacancies.html', {"data": data})
+    return render(request, "index/last_vacancies.html")
