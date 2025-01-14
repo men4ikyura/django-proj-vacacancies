@@ -7,7 +7,7 @@ def get_plot_perc_years(ax, df):
     perc = (df["perc"])
 
     ax.pie(perc, labels=area_name,  autopct='%1.1f%%',
-           textprops={'fontsize': 8}, radius=1.2)
+           textprops={'fontsize': 10}, radius=1.3)
 
 
 def read_file(path_file):

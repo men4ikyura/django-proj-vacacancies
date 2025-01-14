@@ -41,5 +41,5 @@ if __name__ == "__main__":
                      "scriptsData/htmlTablels/htmlFiles/filtred/filtredAvgSalYears.html", ["Год", "Средняя зарплата (рубли)"])
     create_html_file("scriptsData/filtredStatistics/filtredCountYears.csv",
                      "scriptsData/htmlTablels/htmlFiles/filtred/filtredCountYears.html", ["Город", "Количество вакансий"])
-    create_html_file("scriptsData/generalStatistics/percVacCities.csv",
+    create_html_file("scriptsData/filtredStatistics/percCities.csv",
                      "scriptsData/htmlTablels/htmlFiles/filtred/percVacCities.html", ["Город", "Доля вакансий"])

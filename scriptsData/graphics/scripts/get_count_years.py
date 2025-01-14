@@ -6,10 +6,10 @@ def get_plot_count_years(ax, df):
     years = (df["published_at"])
     size = (df["size"] / 1000)
     ax.bar(years, size, width=0.7)
-    ax.set_ylabel("количесвто (тыс.)", fontsize=9)
-    ax.tick_params(axis='y', labelsize=7)
+    ax.set_ylabel("количесвто (тыс.)", fontsize=11)
+    ax.tick_params(axis='y', labelsize=9)
     ax.set_xticks(years, labels=years)
-    ax.tick_params(axis='x', labelsize=7, rotation=90)
+    ax.tick_params(axis='x', labelsize=9, rotation=90)
     ax.grid(axis='y')
 
 

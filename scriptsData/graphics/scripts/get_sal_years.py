@@ -7,10 +7,10 @@ def get_plot_sal_years(ax, df):
     salary = (df["average"] / 1000)
 
     ax.bar(years, salary, width=0.7)
-    ax.set_ylabel("cредняя з/п (тыс. руб)", fontsize=9)
-    ax.tick_params(axis='y', labelsize=7)
+    ax.set_ylabel("cредняя з/п (тыс. руб)", fontsize=11)
+    ax.tick_params(axis='y', labelsize=9)
     ax.set_xticks(years, labels=years)
-    ax.tick_params(axis='x', labelsize=7, rotation=90)
+    ax.tick_params(axis='x', labelsize=9, rotation=90)
     ax.grid(axis='y')
 
 

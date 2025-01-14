@@ -16,7 +16,7 @@ def get_perc_cities(df):
                    .drop(columns="count")
                    )
     perc_cities.loc[len(perc_cities)] = [
-        "Другие", 100 - perc_cities["perc"].sum()]
+        "Другие", round(100 - perc_cities["perc"].sum(), 2)]
     return perc_cities
 
 

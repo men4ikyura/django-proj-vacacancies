@@ -18,9 +18,11 @@
                 const shortDescription = event.target.previousElementSibling.previousElementSibling;
                 const fullDescription = event.target.previousElementSibling;
                 if (fullDescription.style.display === "none" || fullDescription.style.display === "") {
+                    shortDescription.style.display = "none";
                     fullDescription.style.display = "inline";
                     event.target.textContent = "Свернуть";
                 } else {
+                    shortDescription.style.display = "inline";
                     fullDescription.style.display = "none";
                     event.target.textContent = "Читать полностью";
                 }

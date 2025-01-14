@@ -7,10 +7,10 @@ def get_plot_sal_cities(ax, df):
     salary = (df["average"] / 1000)
 
     ax.barh(people, salary)
-    ax.tick_params(axis='y', labelsize=7)
+    ax.tick_params(axis='y', labelsize=9)
     ax.invert_yaxis()
-    ax.set_xlabel("cредняя з/п (тыс. руб)", fontsize=9)
-    ax.tick_params(axis='x', labelsize=7, rotation=90)
+    ax.set_xlabel("cредняя з/п (тыс. руб)", fontsize=11)
+    ax.tick_params(axis='x', labelsize=9, rotation=90)
     ax.grid(axis='x')
 
 
